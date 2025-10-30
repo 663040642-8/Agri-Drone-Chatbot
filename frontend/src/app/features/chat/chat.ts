@@ -12,7 +12,7 @@ import { UiStateService } from '../../core/services/ui-state-service';
   selector: 'app-chat',
   templateUrl: './chat.html',
   styleUrl: './chat.css',
-  imports: [ReactiveFormsModule, Navbar]
+  imports: [ReactiveFormsModule]
 })
 export class Chat implements OnInit, AfterViewChecked {
 
