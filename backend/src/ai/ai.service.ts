@@ -6,7 +6,7 @@ export class AiService {
   private model;
 
   constructor() {
-    const apiKey = process.env.GOOGLE_GENAI_API_KEY;
+    const apiKey = process.env.GOOGLE_API_KEY;
     if (!apiKey) {
       throw new Error('❌ Missing GOOGLE_GENAI_API_KEY in .env');
     }
