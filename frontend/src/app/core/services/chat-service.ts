@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { VectorSearchInterface, VectorSearchResponse } from '../models/vector-search-interface';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
-  private llmAPI = 'http://localhost:3000/ai/ask';
-  private vectorAPI = 'http://localhost:8000';
+  private llmAPI = environment.llmApiUrl; 
+  private vectorAPI = environment.vectorApiUrl;
   private http = inject(HttpClient);
 
   queryVectorDB(data: VectorSearchInterface) {

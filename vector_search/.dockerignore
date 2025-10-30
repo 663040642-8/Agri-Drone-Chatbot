@@ -1,0 +1,21 @@
+# ไฟล์: vector_search/.dockerignore
+
+# ยกเว้นโฟลเดอร์ที่ Docker มักใช้
+**/__pycache__
+**/*.pyc
+**/*.pyo
+
+# ยกเว้นโฟลเดอร์ Cache และ Environment 
+venv/
+.venv/
+.pytest_cache/
+.mypy_cache/
+
+# ***สำคัญ: ยกเว้นไฟล์ Cache ของ Hugging Face และ Transformers***
+# นี่คือที่ที่โมเดลขนาดใหญ่ถูกเก็บไว้
+.cache/
+/tmp/*
+
+# หากคุณมีไฟล์ข้อมูลขนาดใหญ่ในโฟลเดอร์นี้ ให้ยกเว้นด้วย (เช่น)
+data/
+documents/

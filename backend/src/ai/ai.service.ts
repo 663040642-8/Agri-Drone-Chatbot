@@ -6,13 +6,13 @@ export class AiService {
   private model;
 
   constructor() {
-    const apiKey = process.env.GOOGLE_GENAI_API_KEY;
+    const apiKey = process.env.GOOGLE_API_KEY;
     if (!apiKey) {
-      throw new Error('❌ Missing GOOGLE_GENAI_API_KEY in .env');
+      throw new Error('❌ Missing GOOGLE_API_KEY in .env');
     }
 
     const genAI = new GoogleGenerativeAI(apiKey);
-    this.model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+    this.model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
   }
 
   async askGemini(context: string, question: string): Promise<string> {
