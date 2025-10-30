@@ -1,0 +1,24 @@
+.custom-scrollbar {
+  /* สำหรับ Firefox */
+  scrollbar-width: thin;
+  /* Thumb (emerald-800) / Track (emerald-700) */
+  scrollbar-color: #065f46 #047857; 
+}
+
+/* สำหรับ Chrome, Edge, Safari (Webkit) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px; /* ความกว้าง */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #047857; /* สีพื้นหลัง (Track) - emerald-700 */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #065f46; /* สีตัวลาก (Thumb) - emerald-800 */
+  border-radius: 4px;      
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #064e3b; /* สีตอนชี้ (Hover) - emerald-900 */
+}

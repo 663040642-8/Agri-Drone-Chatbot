@@ -1,0 +1,23 @@
+<div class="flex h-screen">
+
+  @if (authService.isLoggedIn) {
+  <app-sidebar></app-sidebar>
+  }
+
+  <div class="flex-1 flex flex-col overflow-hidden relative">
+
+    @if (!authService.isLoggedIn) {
+    <app-navbar></app-navbar>
+    }
+
+    <main class="flex-1 overflow-auto bg-gray-100 p-0 md:p-6">
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
+
+  @if (authService.isLoggedIn && uiState.isSidebarOpen()) {
+  <div (click)="uiState.toggleSidebar()" class="fixed inset-0 z-30 bg-black/50 md:hidden"></div>
+  }
+
+</div>

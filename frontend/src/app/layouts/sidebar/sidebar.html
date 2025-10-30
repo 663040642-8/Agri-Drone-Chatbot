@@ -1,0 +1,82 @@
+<aside class="flex flex-col h-screen bg-emerald-700 text-white transition-all duration-300
+             fixed top-0 left-0 z-40 w-52 p-4
+             md:static md:h-screen md:translate-x-0 md:z-auto" [ngClass]="{
+         '-translate-x-full': !uiState.isSidebarOpen(), 
+         'md:w-52 md:p-4': uiState.isSidebarOpen(), 
+         'md:w-16 md:p-2': !uiState.isSidebarOpen()
+       }">
+
+  <div class="flex pb-3 mb-3 border-b border-emerald-600" [ngClass]="{
+         'items-center justify-between': uiState.isSidebarOpen(),
+         'items-center justify-center': !uiState.isSidebarOpen()
+       }">
+
+    <span class="text-white text-2xl font-medium tracking-tight" [class.hidden]="!uiState.isSidebarOpen()">
+      Chatbot<br>โดรนเกษตร
+    </span>
+
+    <button (click)="uiState.toggleSidebar()"
+      class="p-1 rounded-lg text-emerald-200 hover:bg-emerald-600 hover:text-white">
+      @if (uiState.isSidebarOpen()) {
+      <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+        stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" />
+      </svg>
+      } @else {
+      <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+        stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 4.5l7.5 7.5-7.5 7.5m6-15l7.5 7.5-7.5 7.5" />
+      </svg>
+      }
+    </button>
+  </div>
+
+  <div>
+    <button (click)="onNewChat()"
+      class="flex items-center w-full p-2.5 text-sm font-medium text-left text-white rounded-lg transition-colors duration-200 hover:bg-emerald-600"
+      [class.justify-center]="!uiState.isSidebarOpen()">
+      <svg class="w-5 h-5" [class.mr-2]="uiState.isSidebarOpen()" xmlns="http://www.w3.org/2000/svg" fill="none"
+        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+      </svg>
+      <span [class.hidden]="!uiState.isSidebarOpen()">แชทใหม่</span>
+    </button>
+  </div>
+
+  <div class="flex-1 mt-2 space-y-1 overflow-y-auto custom-scrollbar" [class.-mr-4]="uiState.isSidebarOpen()"
+    [class.-mr-2]="!uiState.isSidebarOpen()">
+
+    @for (chat of chats(); track chat.id) {
+    <a (click)="onSelect(chat.id)" [title]="chat.title"
+      class="block px-2.5 py-1.5 text-sm text-emerald-100 rounded-lg truncate" [ngClass]="{
+           'hover:bg-emerald-600': uiState.isSidebarOpen(),
+           'hover:text-white': uiState.isSidebarOpen(),
+           'bg-emerald-600': uiState.isSidebarOpen() && chat.id === chatHistoryService.activeChatId(),
+           'cursor-pointer': uiState.isSidebarOpen(),
+           'cursor-default': !uiState.isSidebarOpen()
+         }">
+
+      @if(uiState.isSidebarOpen()) {
+      <span>{{ chat.title }}</span>
+      }
+
+    </a>
+    } @empty {
+    <p class="px-2.5 py-1.5 text-sm text-emerald-300" [class.hidden]="!uiState.isSidebarOpen()">ยังไม่มีประวัติแชท</p>
+    }
+  </div>
+
+  <div class="pt-2 border-t border-emerald-600">
+    <button (click)="authService.signOut()"
+      class="flex items-center w-full p-2.5 text-sm font-medium text-left text-white rounded-lg transition-colors duration-200 hover:bg-emerald-600"
+      [class.justify-center]="!uiState.isSidebarOpen()">
+      <svg class="w-5 h-5" [class.mr-2]="uiState.isSidebarOpen()" xmlns="http://www.w3.org/2000/svg" fill="none"
+        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
+      </svg>
+      <span [class.hidden]="!uiState.isSidebarOpen()">ออกจากระบบ</span>
+    </button>
+  </div>
+</aside>

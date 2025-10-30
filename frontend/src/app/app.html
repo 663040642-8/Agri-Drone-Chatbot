@@ -1,0 +1,7 @@
+@if (authService.loading()) {
+  <div class="flex items-center justify-center h-screen">
+    <p>กำลังโหลด...</p>
+  </div>
+} @else {
+  <router-outlet></router-outlet>
+}
